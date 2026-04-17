@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_CN">
+<context>
+    <name>ClientForm</name>
+    <message>
+        <location filename="clientform.ui" line="20"/>
+        <source>Client</source>
+        <translation>客户端</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="62"/>
+        <source>Network Setup</source>
+        <translation>网络设置</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="104"/>
+        <source>Server IP:</source>
+        <translation>服务器地址:</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="163"/>
+        <source>Port:</source>
+        <translation>端口:</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="235"/>
+        <source>TCP Connect</source>
+        <translation>TCP 连接</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="266"/>
+        <source>UDP Channel</source>
+        <translation>UDP 通道</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="300"/>
+        <source>Buf 5:</source>
+        <translation>数据5：</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="365"/>
+        <source>Buf 1:</source>
+        <translation>数据1:</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="319"/>
+        <location filename="clientform.ui" line="384"/>
+        <location filename="clientform.ui" line="442"/>
+        <location filename="clientform.ui" line="461"/>
+        <location filename="clientform.ui" line="526"/>
+        <location filename="clientform.ui" line="545"/>
+        <source>Send</source>
+        <translation>发送</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="468"/>
+        <source>Buf 0:</source>
+        <translation>数据0:</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="326"/>
+        <source>Buf 2:</source>
+        <translation>数据2:</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="391"/>
+        <source>Buf 4:</source>
+        <translation>数据4:</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="475"/>
+        <source>Buf 3:</source>
+        <translation>数据3:</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="571"/>
+        <source>Output:    </source>
+        <translation>收发记录:    </translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="578"/>
+        <source>Recv</source>
+        <translation>接收</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="601"/>
+        <source>, Send</source>
+        <translation>, 发送</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="631"/>
+        <source>Write log</source>
+        <translation>写入日志</translation>
+    </message>
+    <message>
+        <location filename="clientform.ui" line="650"/>
+        <source>Clear</source>
+        <translation>清除</translation>
+    </message>
+</context>
+<context>
+    <name>HelpForm</name>
+    <message>
+        <location filename="helpform.ui" line="20"/>
+        <source>Help</source>
+        <translation>帮助</translation>
+    </message>
+    <message>
+        <location filename="helpform.ui" line="50"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;   font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;sokit&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; &quot;&gt;freeware version: 1.3.1 (GPLv3)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; &quot;&gt;website: https://github.com/sinpolib/sokit/&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; &quot;&gt;email: sinpowei@gmail.com&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; &quot;&gt;this is a TCP / UDP package send &amp;amp; receive &amp;amp; transfer tool&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; &quot;&gt;--------------------------------------------------------------&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Send buffer syntax:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; &quot;&gt;all characters in a send buf is traited  as it is (or UTF8 for multibyte char) , if you want send a hexdecimal characters, you should put those sub string in [ ], etc, [FF AB CD 12 12], space and [ ] will be trimmed when send out. (double [[ for a normal [ character)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Keyboard Shortcuts:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;  font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F1&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	show/hide this window&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F10&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	set/unset main windows at top of desktop&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Esc&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on first input control&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F2&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on connects list (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F3&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on log&apos;s list&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F4&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on log&apos;s entry details&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Alt-0&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on data in buf 0 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Alt-1&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on data in buf 1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Alt-2&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on data in buf 2&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Alt-3&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on data in buf 3&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctr-Shf-1&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on data in dir-combobox 1 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctr-Shf-2&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on data in dir-combobox 2 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctr-Shf-3&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	focus on data in dir-combobox 3 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-0&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	send data in buf 0 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-1&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	send data in buf 1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-2&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	send data in buf 2&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-3&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	send data in buf 3&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-T&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	trig TCP button or combobox&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-U&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	trig UDP button or combobox&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-S&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	trig START button&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F5&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	trig dir-combobox 1 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F6&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	trig dir-combobox 2 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;F7&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	trig dir-combobox 3 (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-W&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	trig write log to file&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-D&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	clear log window&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Alt-A&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	select all connects (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-K&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	kill all selected connects (if exist)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-A&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	select all in current input control&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-C&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	copy selected content in current input control&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-V&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	paste into current input control&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;  font-weight:600;&quot;&gt;Ctrl-X&lt;/span&gt;&lt;span style=&quot; &quot;&gt;	cut&amp;amp;copy selected content in current input control&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; &quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; ;  font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;sokit&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;freeware version: 1.3.1 (GPLv3)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;website: https://github.com/sinpolib/sokit/&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;email: sinpowei@gmail.com&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;TCP / UDP 测试工具,用来接收,发送,转发TCP或UDP数据包&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--------------------------------------------------------------&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;数据输入格式:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;发送区的编辑框内的字符会按照ascii值发送(多字节字符按照UTF8编码),如果需要发送十六进制原始数据,请将相应数值的ascii表示放进方括号中,例如, [FF AB CD 12 12], 实际发送时会过滤掉方括号本身,以及其中的空格字符. (使用两个连续的 [[ 表示 [ 字符本身)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;快捷键:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F1&lt;/span&gt;	显示/隐藏 本帮助窗口&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F10&lt;/span&gt;	设置/取消 使主窗口位于桌面中其他窗口之前&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Esc&lt;/span&gt;	选中第一个输入控件&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F2&lt;/span&gt;	选中网络连接列表 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F3&lt;/span&gt;	选中日志条目列表&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F4&lt;/span&gt;	选中详细日志区&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alt-0&lt;/span&gt;	选中数据0编辑框 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alt-1&lt;/span&gt;	选中数据1编辑框&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alt-2&lt;/span&gt;	选中数据2编辑框&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alt-3&lt;/span&gt;	选中数据3编辑框&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctr-Shf-1&lt;/span&gt;	选中数据1发送方向下拉列表 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctr-Shf-2&lt;/span&gt;	选中数据2发送方向下拉列表 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctr-Shf-3&lt;/span&gt;	选中数据3发送方向下拉列表 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-0&lt;/span&gt;	发送数据0 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-1&lt;/span&gt;	发送数据1&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-2&lt;/span&gt;	发送数据2&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-3&lt;/span&gt;	发送数据3&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-T&lt;/span&gt;	触发TCP按钮或下拉列表项&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-U&lt;/span&gt;	触发UDP按钮或下拉列表项&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-S&lt;/span&gt;	触发启动按钮&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F5&lt;/span&gt;	切换数据1的发送方向 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F6&lt;/span&gt;	切换数据2的发送方向 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;F7&lt;/span&gt;	切换数据3的发送方向 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-W&lt;/span&gt;	控制记录文件日志的选择钮&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-D&lt;/span&gt;	清空界面中日志列表和详细信息,复位收发数据统计&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alt-A&lt;/span&gt;	选择当前所有连接 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-K&lt;/span&gt;	断开选中的连接 (如果存在的话)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-A&lt;/span&gt;	全选&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-C&lt;/span&gt;	拷贝&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-V&lt;/span&gt;	粘贴&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ctrl-X&lt;/span&gt;	剪切&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</translation>
+    </message>
+</context>
+<context>
+    <name>Logger</name>
+    <message>
+        <location filename="logger.cpp" line="49"/>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <location filename="logger.cpp" line="53"/>
+        <source>Clear</source>
+        <translation>清除</translation>
+    </message>
+    <message>
+        <location filename="logger.cpp" line="57"/>
+        <source>Select All</source>
+        <translation>全选</translation>
+    </message>
+</context>
+<context>
+    <name>NotepadForm</name>
+    <message>
+        <location filename="notepadform.cpp" line="41"/>
+        <source>Notepad</source>
+        <translation>记事板</translation>
+    </message>
+</context>
+<context>
+    <name>QLineEdit</name>
+    <message>
+        <location filename="main.cpp" line="42"/>
+        <source>&amp;Undo</source>
+        <translation>撤销</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="43"/>
+        <source>&amp;Redo</source>
+        <translation>重做</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="44"/>
+        <source>Cu&amp;t</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="45"/>
+        <source>&amp;Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="46"/>
+        <source>&amp;Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="47"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="48"/>
+        <source>Select All</source>
+        <translation>全选</translation>
+    </message>
+</context>
+<context>
+    <name>QTextControl</name>
+    <message>
+        <location filename="main.cpp" line="50"/>
+        <source>&amp;Undo</source>
+        <translation>撤销</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="51"/>
+        <source>&amp;Redo</source>
+        <translation>重做</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="52"/>
+        <source>Cu&amp;t</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="53"/>
+        <source>&amp;Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="54"/>
+        <source>&amp;Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="55"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="56"/>
+        <source>Select All</source>
+        <translation>全选</translation>
+    </message>
+</context>
+<context>
+    <name>ServerForm</name>
+    <message>
+        <location filename="serverform.ui" line="64"/>
+        <source>Network Setup</source>
+        <translation>网络设置</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="105"/>
+        <location filename="serverform.ui" line="267"/>
+        <source>Port:</source>
+        <translation>端口:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="130"/>
+        <source>TCP Addr:</source>
+        <translation>TCP 地址:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="217"/>
+        <source>UDP Addr:</source>
+        <translation>UDP 地址:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="348"/>
+        <source>TCP Listen</source>
+        <translation>TCP 侦听</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="326"/>
+        <source>UDP Listen</source>
+        <translation>UDP 侦听</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="381"/>
+        <source>Connections</source>
+        <translation>当前连接</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="471"/>
+        <source>All</source>
+        <translation>全选</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="496"/>
+        <source>Disconn</source>
+        <translation>断开</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="701"/>
+        <source>Buf 1:</source>
+        <translation>数据1:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="530"/>
+        <location filename="serverform.ui" line="568"/>
+        <location filename="serverform.ui" line="649"/>
+        <location filename="serverform.ui" line="675"/>
+        <location filename="serverform.ui" line="694"/>
+        <location filename="serverform.ui" line="766"/>
+        <source>Send</source>
+        <translation>发送</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="575"/>
+        <source>Buf 5:</source>
+        <translation>数据5:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="630"/>
+        <source>Buf 2:</source>
+        <translation>数据2:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="656"/>
+        <source>Buf 3:</source>
+        <translation>数据3:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="708"/>
+        <source>Buf 4:</source>
+        <translation>数据4:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="731"/>
+        <source>Buf 6:</source>
+        <translation>数据6:</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="798"/>
+        <source>Output:    </source>
+        <translation>收发记录:    </translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="805"/>
+        <source>Recv</source>
+        <translation>接收</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="828"/>
+        <source>, Send</source>
+        <translation>, 发送</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="858"/>
+        <source>Write log</source>
+        <translation>写入日志</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="20"/>
+        <source>Server</source>
+        <translation>服务器</translation>
+    </message>
+    <message>
+        <location filename="serverform.ui" line="877"/>
+        <source>Clear</source>
+        <translation>清除</translation>
+    </message>
+</context>
+<context>
+    <name>Sokit</name>
+    <message>
+        <location filename="main.cpp" line="96"/>
+        <source>font</source>
+        <translation>Microsoft YaHei,10;微软雅黑,10;WenQuanYi Micro Hei,11;文泉驿微米黑,11;DejaVu Sans,11;WenQuanYi Zen Hei,10;文泉驿正黑,10;宋体,9;SimSun,9;FangSong,11.5;AR PL UMing CN,10.5;</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="147"/>
+        <source>sokit -- F1 for help</source>
+        <translation>sokit -- F1获取帮助</translation>
+    </message>
+</context>
+<context>
+    <name>TransferForm</name>
+    <message>
+        <location filename="transferform.ui" line="20"/>
+        <source>Transfer</source>
+        <translation>转发器</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="64"/>
+        <source>Network Setup</source>
+        <translation>网络设置</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="102"/>
+        <location filename="transferform.ui" line="264"/>
+        <source>Port:</source>
+        <translation>端口:</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="127"/>
+        <source>SRC Addr:</source>
+        <translation>SRC 地址:</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="214"/>
+        <source>DST Addr:</source>
+        <translation>DST 地址:</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="323"/>
+        <source>Start</source>
+        <translation>启动</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="388"/>
+        <source>Connections</source>
+        <translation>当前连接</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="478"/>
+        <source>All</source>
+        <translation>全选</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="503"/>
+        <source>Disconn</source>
+        <translation>断开</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="525"/>
+        <source>Buf 1:</source>
+        <translation>数据1:</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="544"/>
+        <location filename="transferform.ui" line="589"/>
+        <location filename="transferform.ui" line="631"/>
+        <source>Send</source>
+        <translation>发送</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="554"/>
+        <source>Buf 2:</source>
+        <translation>数据2:</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="596"/>
+        <source>Buf 3:</source>
+        <translation>数据3:</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="778"/>
+        <source>Output:    </source>
+        <translation>收发记录:    </translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="785"/>
+        <source>Recv</source>
+        <translation>接收</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="808"/>
+        <source>, Send</source>
+        <translation>, 发送</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="838"/>
+        <source>Write log</source>
+        <translation>写入日志</translation>
+    </message>
+    <message>
+        <location filename="transferform.ui" line="857"/>
+        <source>Clear</source>
+        <translation>清除</translation>
+    </message>
+</context>
+<context>
+    <name>MsgListPanel</name>
+    <message>
+        <source>Send</source>
+        <translation>发送</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自动发送</translation>
+    </message>
+    <message>
+        <source>Loop</source>
+        <translation>循环发送</translation>
+    </message>
+    <message>
+        <source>Send selected message</source>
+        <translation>发送选中消息</translation>
+    </message>
+    <message>
+        <source>Auto send selected messages</source>
+        <translation>自动发送选中消息</translation>
+    </message>
+    <message>
+        <source>Loop send selected messages</source>
+        <translation>循环发送选中消息</translation>
+    </message>
+</context>
+<context>
+    <name>MsgListModel</name>
+    <message>
+        <source>Data</source>
+        <translation>数据</translation>
+    </message>
+    <message>
+        <source>Desc</source>
+        <translation>说明</translation>
+    </message>
+    <message>
+        <source>Order</source>
+        <translation>顺序</translation>
+    </message>
+    <message>
+        <source>Delay(ms)</source>
+        <translation>延迟(ms)</translation>
+    </message>
+</context>
+</TS>
