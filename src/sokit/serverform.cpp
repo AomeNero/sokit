@@ -134,13 +134,13 @@ bool ServerForm::initForm()
 bool ServerForm::initHotkeys()
 {
 	bindFocus(m_ui.cmbTcpAddr, Qt::Key_Escape);
-	bindClick(m_ui.btnTcp,  Qt::CTRL + Qt::Key_T);
-	bindClick(m_ui.btnUdp,  Qt::CTRL + Qt::Key_U);
+	bindClick(m_ui.btnTcp,  Qt::Key_T, Qt::ControlModifier);
+	bindClick(m_ui.btnUdp,  Qt::Key_U, Qt::ControlModifier);
 
 	return true;
 }
 
-void ServerForm::kill(QStringList& list)
+void ServerForm::kill(QStringList& list) noexcept
 {
 	QString tcpname(TK::socketTypeName(true));
 

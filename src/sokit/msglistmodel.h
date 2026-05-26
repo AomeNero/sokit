@@ -32,13 +32,10 @@ public:
     void addItem(const MsgItem& item);
     void insertItem(int row, const MsgItem& item);
     void removeItem(int row);
-    void clearAll();
     void moveUp(int row);
     void moveDown(int row);
 
-    const QList<MsgItem>& items() const { return m_items; }
     MsgItem getItem(int row) const;
-    int findItemByOrder(int order) const;
 
     QList<MsgItem> getCheckedItemsSorted() const;
 

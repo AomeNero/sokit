@@ -42,8 +42,8 @@ void NotepadForm::setupUi()
 
     QMetaObject::connectSlotsByName(this);
 
-	QShortcut* n = new QShortcut(QKeySequence(Qt::Key_Tab+Qt::CTRL), this);
-	QShortcut* l = new QShortcut(QKeySequence(Qt::Key_Tab+Qt::CTRL+Qt::SHIFT), this);
+	QShortcut* n = new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_Tab), this);
+	QShortcut* l = new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab), this);
 	n->setObjectName("n");
 	l->setObjectName("l");
 

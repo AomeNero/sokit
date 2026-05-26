@@ -15,7 +15,6 @@
 #define SET_VAL_LGTAN  "log_transf"
 
 #define PROP_EDIT "edit"
-#define PROP_DIRT "dirt"
 
 TransferForm::TransferForm(QWidget *parent, Qt::WindowFlags flags)
 : BaseForm(parent, flags),m_server(0)
@@ -87,14 +86,14 @@ bool TransferForm::initForm()
 bool TransferForm::initHotkeys()
 {
 	bindFocus(m_ui.cmbSrcAddr, Qt::Key_Escape);
-	bindClick(m_ui.btnTrigger,  Qt::CTRL + Qt::Key_S);
-	bindSelect(m_ui.cmbType, 0, Qt::CTRL + Qt::Key_T);
-	bindSelect(m_ui.cmbType, 1, Qt::CTRL + Qt::Key_U);
+	bindClick(m_ui.btnTrigger,  Qt::Key_S, Qt::ControlModifier);
+	bindSelect(m_ui.cmbType, 0, Qt::Key_T, Qt::ControlModifier);
+	bindSelect(m_ui.cmbType, 1, Qt::Key_U, Qt::ControlModifier);
 
 	return true;
 }
 
-void TransferForm::kill(QStringList& list)
+void TransferForm::kill(QStringList& list) noexcept
 {
 	if (m_server)
 	{

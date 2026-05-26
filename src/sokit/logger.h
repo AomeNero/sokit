@@ -2,7 +2,6 @@
 #define __LOGGER_H__
 
 #include <QFile>
-#include <QTreeView>
 #include <QCheckBox>
 #include <QMenu>
 

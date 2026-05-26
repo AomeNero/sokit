@@ -32,11 +32,6 @@ QString Setting::path()
 	return QFileInfo(storage().fileName()).dir().absolutePath();
 }
 
-void Setting::flush()
-{
-	storage().sync();
-}
-
 void Setting::set(const QString& section, const QString& key, const QString& val)
 {
 	storage().setValue(section+key, val);

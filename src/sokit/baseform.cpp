@@ -13,15 +13,10 @@
 #include <QPlainTextEdit>
 
 #define PROP_EDIT "edit"
-#define PROP_DIRT "dirt"
 #define PROP_TARG "targ"
 
-BaseForm::BaseForm(QWidget* p, Qt::WindowFlags f)
-:QWidget(p, f),m_cntRecv(0),m_cntSend(0),m_labRecv(0),m_labSend(0),m_cnlist(0)
-{
-}
-
-BaseForm::~BaseForm()
+BaseForm::BaseForm(QWidget* p, Qt::WindowFlags f) noexcept
+:QWidget(p, f),m_cntRecv(0),m_cntSend(0),m_labRecv(nullptr),m_labSend(nullptr),m_cnlist(nullptr)
 {
 }
 
@@ -37,13 +32,13 @@ bool BaseForm::init()
 	return true;
 }
 
-void BaseForm::initCounter(QLabel* r, QLabel* s)
+void BaseForm::initCounter(QLabel* r, QLabel* s) noexcept
 {
 	m_labRecv = r;
 	m_labSend = s;
 }
 
-void BaseForm::initLogger(QCheckBox* w, QToolButton* c, QTreeWidget* o, QPlainTextEdit* d)
+void BaseForm::initLogger(QCheckBox* w, QToolButton* const c, QTreeWidget* o, QPlainTextEdit* d)
 {
 	m_logger.init(o, w, d);
 
@@ -89,27 +84,49 @@ void BaseForm::bindBuffer(qint32 id, QLineEdit* e, QToolButton* s, QComboBox* d)
 
 	connect(s, SIGNAL(released()), this, SLOT(send()));
 
-	bindClick(s, Qt::Key_0 + id + Qt::CTRL);
-	bindFocus(e, Qt::Key_0 + id + Qt::ALT);
-	bindFocus(d, Qt::Key_0 + id + Qt::CTRL + Qt::SHIFT);
+	bindClick(s, (Qt::Key)(Qt::Key_0 + id), Qt::ControlModifier);
+	bindFocus(e, (Qt::Key)(Qt::Key_0 + id), Qt::AltModifier);
+	bindFocus(d, (Qt::Key)(Qt::Key_0 + id), Qt::ControlModifier | Qt::ShiftModifier);
 }
 
-void BaseForm::bindFocus(QWidget* w, qint32 k)
+void BaseForm::bindFocus(QWidget* w, Qt::Key k)
 {
 	QShortcut* s = new QShortcut(QKeySequence(k), this);
 	s->setProperty(PROP_TARG, QVariant::fromValue((void*)w));
 	connect(s, SIGNAL(activated()), this, SLOT(focus()));
 }
 
-void BaseForm::bindClick(QAbstractButton* b, qint32 k)
+void BaseForm::bindFocus(QWidget* w, Qt::Key k, Qt::KeyboardModifiers m)
+{
+	QShortcut* s = new QShortcut(QKeySequence(m + k), this);
+	s->setProperty(PROP_TARG, QVariant::fromValue((void*)w));
+	connect(s, SIGNAL(activated()), this, SLOT(focus()));
+}
+
+void BaseForm::bindClick(QAbstractButton* b, Qt::Key k)
 {
 	QShortcut* s = new QShortcut(QKeySequence(k), this);
 	connect(s, SIGNAL(activated()), b, SLOT(click()));
 }
 
-void BaseForm::bindSelect(QComboBox* b, qint32 i, qint32 k)
+void BaseForm::bindClick(QAbstractButton* b, Qt::Key k, Qt::KeyboardModifiers m)
+{
+	QShortcut* s = new QShortcut(QKeySequence(m + k), this);
+	connect(s, SIGNAL(activated()), b, SLOT(click()));
+}
+
+void BaseForm::bindSelect(QComboBox* b, qint32 i, Qt::Key k)
 {
 	QShortcut* s = new QShortcut(QKeySequence(k), this);
+	s->setProperty(PROP_TARG, QVariant::fromValue((void*)b));
+	s->setObjectName(QString::number(i));
+
+	connect(s, SIGNAL(activated()), this, SLOT(select()));
+}
+
+void BaseForm::bindSelect(QComboBox* b, qint32 i, Qt::Key k, Qt::KeyboardModifiers m)
+{
+	QShortcut* s = new QShortcut(QKeySequence(m + k), this);
 	s->setProperty(PROP_TARG, QVariant::fromValue((void*)b));
 	s->setObjectName(QString::number(i));
 

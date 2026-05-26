@@ -5,8 +5,6 @@
 
 #define PROP_CONN  "CONN"
 
-#define MAXBUFFER 1024*1024
-
 ServerSkt::ServerSkt(QObject *parent)
 : QObject(parent),m_port(0)
 {
@@ -367,14 +365,8 @@ void ServerSktUdp::newData()
 
 	QHostAddress addr; quint16 port(0);
 
-	qint64 readLen = 0;
-	qint64 ioLen = s->readDatagram(buf, bufLen, &addr, &port);
-
-	//while (ioLen > 0)
-	//{
-		readLen += ioLen;
-	//	ioLen = s->readDatagram(buf+readLen, bufLen-readLen, &addr, &port);
-	//}
+		qint64 ioLen = s->readDatagram(buf, bufLen, &addr, &port);
+		qint64 readLen = ioLen;
 
 	if (ioLen >= 0)
 	{

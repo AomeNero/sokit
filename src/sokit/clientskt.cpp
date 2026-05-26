@@ -2,8 +2,6 @@
 #include "toolkit.h"
 #include "clientskt.h"
 
-#define MAXBUFFER 1024*1024
-
 ClientSkt::ClientSkt(QObject *parent)
 : QObject(parent),m_port(0)
 {

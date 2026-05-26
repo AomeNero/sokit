@@ -23,7 +23,6 @@ private slots:
 
 private:
 	void initFont();
-	void initDefaultActionsName();
 
 private:
 	QMainWindow m_wnd;

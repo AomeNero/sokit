@@ -10,7 +10,7 @@ class TransferForm : public BaseForm
 	Q_OBJECT
 
 public:
-    TransferForm(QWidget* p=0, Qt::WindowFlags f=0);
+    TransferForm(QWidget* p=nullptr, Qt::WindowFlags f={});
 	~TransferForm();
 
 protected:
@@ -19,7 +19,7 @@ protected:
 	virtual void initConfig();
 	virtual void saveConfig();
 	virtual void send(const QString& data, const QString& dir);
-	virtual void kill(QStringList& list);
+	virtual void kill(QStringList& list) noexcept;
 
 private slots:
 	void trigger(bool start);

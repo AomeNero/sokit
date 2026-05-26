@@ -23,8 +23,6 @@ public:
 	static void save(const QString& section, const QString& prefix, const QComboBox& cmb, bool all=true);
 	static void lord(const QString& section, const QString& prefix, QComboBox& cmb, bool all=true);
 
-	static void flush();
-	
 private:
 	Setting();
 	static QSettings& storage();

@@ -11,7 +11,7 @@ class ServerForm : public BaseForm
 	Q_OBJECT
 
 public:
-    ServerForm(QWidget* p=0, Qt::WindowFlags f=0);
+    ServerForm(QWidget* p=nullptr, Qt::WindowFlags f={});
 	virtual ~ServerForm();
 
 protected:
@@ -20,7 +20,7 @@ protected:
 	virtual void initConfig();
 	virtual void saveConfig();
 	virtual void send(const QString& data, const QString& dir);
-	virtual void kill(QStringList& list);
+	virtual void kill(QStringList& list) noexcept;
 
 private slots:
 	void trigger(bool start);

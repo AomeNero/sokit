@@ -5,6 +5,9 @@
 #include <QVector>
 #include <QHostAddress>
 
+#define MAXBUFFER (1024*1024)
+#define PROP_DIRT "dirt"
+
 class QComboBox;
 class QAbstractSocket;
 class QToolButton;

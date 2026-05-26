@@ -165,16 +165,6 @@ void MsgListModel::removeItem(int row)
     endRemoveRows();
 }
 
-void MsgListModel::clearAll()
-{
-    if (m_items.isEmpty())
-        return;
-
-    beginResetModel();
-    m_items.clear();
-    endResetModel();
-}
-
 void MsgListModel::moveUp(int row)
 {
     if (row <= 0 || row >= m_items.count())
@@ -200,16 +190,6 @@ MsgItem MsgListModel::getItem(int row) const
     if (row >= 0 && row < m_items.count())
         return m_items[row];
     return MsgItem();
-}
-
-int MsgListModel::findItemByOrder(int order) const
-{
-    for (int i = 0; i < m_items.count(); ++i)
-    {
-        if (m_items[i].order == order)
-            return i;
-    }
-    return -1;
 }
 
 QList<MsgItem> MsgListModel::getCheckedItemsSorted() const
