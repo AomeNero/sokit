@@ -1,0 +1,626 @@
+# ----------------------------------------------------
+# sokit Makefile for nmake (MSVC + Qt5)
+# ----------------------------------------------------
+# Usage:
+#   nmake          - Build release version
+#   nmake debug    - Build debug version
+#   nmake clean    - Clean all generated files
+#   nmake all      - Build both debug and release
+# ----------------------------------------------------
+
+# Qt installation path - modify this to match your Qt installation
+QTDIR = D:\Qt\Static\5.15.2_v142
+
+# Project root directory - must be absolute path
+!ifndef PROJECT_ROOT
+PROJECT_ROOT = D:\Git\sokit-master
+!endif
+
+# Project directories (absolute paths)
+SRCDIR = $(PROJECT_ROOT)\src\sokit
+TMPDIR = $(PROJECT_ROOT)\tmp
+BINDIR = $(PROJECT_ROOT)\bin
+
+# Output directories
+OBJDIR_RELEASE = $(TMPDIR)\release
+OBJDIR_DEBUG = $(TMPDIR)\debug
+MOCDIR_RELEASE = $(TMPDIR)\release
+MOCDIR_DEBUG = $(TMPDIR)\debug
+
+# Target
+TARGET = sokit.exe
+
+# Qt tools
+QMAKE = $(QTDIR)\bin\qmake.exe
+MOC = $(QTDIR)\bin\moc.exe
+UIC = $(QTDIR)\bin\uic.exe
+RCC = $(QTDIR)\bin\rcc.exe
+LUPDATE = $(QTDIR)\bin\lupdate.exe
+LRELEASE = $(QTDIR)\bin\lrelease.exe
+
+# Compiler settings
+CC = cl
+LINK = link
+RC = rc
+
+# Qt include paths
+QT_INCLUDE = $(QTDIR)\include
+QT_INCLUDE_CORE = $(QT_INCLUDE)\QtCore
+QT_INCLUDE_GUI = $(QT_INCLUDE)\QtGui
+QT_INCLUDE_WIDGETS = $(QT_INCLUDE)\QtWidgets
+QT_INCLUDE_NETWORK = $(QT_INCLUDE)\QtNetwork
+
+# Qt library paths
+QT_LIB = $(QTDIR)\lib
+QT_PLUGINS = $(QTDIR)\plugins
+
+# Common include paths for MSVC compiler (uses /I)
+INCLUDES = /I"$(SRCDIR)" /I"$(TMPDIR)" /I"$(QT_INCLUDE)" \
+           /I"$(QT_INCLUDE_CORE)" /I"$(QT_INCLUDE_GUI)" \
+           /I"$(QT_INCLUDE_WIDGETS)" /I"$(QT_INCLUDE_NETWORK)"
+
+# Include paths for MOC (uses -I, Unix style)
+MOC_INCLUDES = -I"$(SRCDIR)" -I"$(TMPDIR)" -I"$(QT_INCLUDE)" \
+               -I"$(QT_INCLUDE_CORE)" -I"$(QT_INCLUDE_GUI)" \
+               -I"$(QT_INCLUDE_WIDGETS)" -I"$(QT_INCLUDE_NETWORK)"
+
+# Common defines
+DEFINES = /DQT_NETWORK_LIB /DQT_WIDGETS_LIB /DQT_GUI_LIB \
+          /DQT_CORE_LIB /DNOMINMAX /DWIN32 /D_WINDOWS
+
+# Release compiler flags
+CFLAGS_RELEASE = /nologo /c /W3 /O2 /EHsc /MT /DNDEBUG $(DEFINES) $(INCLUDES)
+
+# Debug compiler flags
+CFLAGS_DEBUG = /nologo /c /W3 /Zi /Od /EHsc /MTd /D_DEBUG $(DEFINES) $(INCLUDES)
+
+# Linker flags
+LFLAGS_RELEASE = /nologo /SUBSYSTEM:WINDOWS /INCREMENTAL:NO
+LFLAGS_DEBUG = /nologo /SUBSYSTEM:WINDOWS /DEBUG
+
+# Qt libraries (static) - order matters for linker
+QT_LIBS_RELEASE = \
+    Qt5Widgets.lib \
+    Qt5Gui.lib \
+    Qt5Network.lib \
+    Qt5Core.lib \
+    qtmain.lib \
+    qtharfbuzz.lib \
+    qtpcre2.lib \
+    qtlibpng.lib \
+    Qt5FontDatabaseSupport.lib \
+    Qt5PlatformCompositorSupport.lib \
+    Qt5WindowsUIAutomationSupport.lib \
+    Qt5EventDispatcherSupport.lib \
+    Qt5AccessibilitySupport.lib
+
+# Qt platform plugins (static)
+QT_PLUGIN_LIBS_RELEASE = \
+    qwindows.lib
+
+QT_LIBS_DEBUG = \
+    Qt5Widgetsd.lib \
+    Qt5Guid.lib \
+    Qt5Networkd.lib \
+    Qt5Cored.lib \
+    qtmaind.lib \
+    qtharfbuzzd.lib \
+    qtpcre2d.lib \
+    qtlibpngd.lib \
+    Qt5FontDatabaseSupportd.lib \
+    Qt5PlatformCompositorSupportd.lib \
+    Qt5WindowsUIAutomationSupportd.lib \
+    Qt5EventDispatcherSupportd.lib \
+    Qt5AccessibilitySupportd.lib
+
+# Qt platform plugins (static debug)
+QT_PLUGIN_LIBS_DEBUG = \
+    qwindowsd.lib
+
+# System libraries
+SYS_LIBS = \
+    ws2_32.lib \
+    winmm.lib \
+    imm32.lib \
+    shell32.lib \
+    user32.lib \
+    gdi32.lib \
+    advapi32.lib \
+    iphlpapi.lib \
+    ole32.lib \
+    oleaut32.lib \
+    uuid.lib \
+    version.lib \
+    netapi32.lib \
+    userenv.lib \
+    dwrite.lib \
+    fontsub.lib
+
+# ----------------------------------------------------
+# Default target: build release
+# ----------------------------------------------------
+all: release
+
+release: dirs $(BINDIR)\$(TARGET)
+
+debug: dirs $(BINDIR)\debug\$(TARGET)
+
+# ----------------------------------------------------
+# Create directories
+# ----------------------------------------------------
+dirs:
+    @if not exist "$(TMPDIR)" mkdir "$(TMPDIR)"
+    @if not exist "$(BINDIR)" mkdir "$(BINDIR)"
+    @if not exist "$(OBJDIR_RELEASE)" mkdir "$(OBJDIR_RELEASE)"
+    @if not exist "$(OBJDIR_DEBUG)" mkdir "$(OBJDIR_DEBUG)"
+    @if not exist "$(BINDIR)\debug" mkdir "$(BINDIR)\debug"
+
+# ----------------------------------------------------
+# Generate UI headers (all in one step)
+# ----------------------------------------------------
+ui_headers:
+    @echo Generating UI headers...
+    $(UIC) $(SRCDIR)\clientform.ui -o $(TMPDIR)\ui_clientform.h
+    $(UIC) $(SRCDIR)\serverform.ui -o $(TMPDIR)\ui_serverform.h
+    $(UIC) $(SRCDIR)\transferform.ui -o $(TMPDIR)\ui_transferform.h
+    $(UIC) $(SRCDIR)\helpform.ui -o $(TMPDIR)\ui_helpform.h
+
+# ----------------------------------------------------
+# Generate MOC files (release)
+# ----------------------------------------------------
+moc_release:
+    @echo Generating MOC files (release)...
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\main.h -o $(MOCDIR_RELEASE)\moc_main.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\baseform.h -o $(MOCDIR_RELEASE)\moc_baseform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\clientform.h -o $(MOCDIR_RELEASE)\moc_clientform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\clientskt.h -o $(MOCDIR_RELEASE)\moc_clientskt.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\serverform.h -o $(MOCDIR_RELEASE)\moc_serverform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\serverskt.h -o $(MOCDIR_RELEASE)\moc_serverskt.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\transferform.h -o $(MOCDIR_RELEASE)\moc_transferform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\transferskt.h -o $(MOCDIR_RELEASE)\moc_transferskt.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\helpform.h -o $(MOCDIR_RELEASE)\moc_helpform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\notepadform.h -o $(MOCDIR_RELEASE)\moc_notepadform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\logger.h -o $(MOCDIR_RELEASE)\moc_logger.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\msglistmodel.h -o $(MOCDIR_RELEASE)\moc_msglistmodel.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\msglistpanel.h -o $(MOCDIR_RELEASE)\moc_msglistpanel.cpp
+
+# ----------------------------------------------------
+# Generate MOC files (debug)
+# ----------------------------------------------------
+moc_debug:
+    @echo Generating MOC files (debug)...
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\main.h -o $(MOCDIR_DEBUG)\moc_main.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\baseform.h -o $(MOCDIR_DEBUG)\moc_baseform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\clientform.h -o $(MOCDIR_DEBUG)\moc_clientform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\clientskt.h -o $(MOCDIR_DEBUG)\moc_clientskt.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\serverform.h -o $(MOCDIR_DEBUG)\moc_serverform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\serverskt.h -o $(MOCDIR_DEBUG)\moc_serverskt.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\transferform.h -o $(MOCDIR_DEBUG)\moc_transferform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\transferskt.h -o $(MOCDIR_DEBUG)\moc_transferskt.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\helpform.h -o $(MOCDIR_DEBUG)\moc_helpform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\notepadform.h -o $(MOCDIR_DEBUG)\moc_notepadform.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\logger.h -o $(MOCDIR_DEBUG)\moc_logger.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\msglistmodel.h -o $(MOCDIR_DEBUG)\moc_msglistmodel.cpp
+    $(MOC) $(MOC_INCLUDES) $(SRCDIR)\msglistpanel.h -o $(MOCDIR_DEBUG)\moc_msglistpanel.cpp
+
+# ----------------------------------------------------
+# Generate RCC file
+# ----------------------------------------------------
+rcc:
+    @echo Generating RCC file...
+    $(RCC) $(SRCDIR)\icons.qrc -o $(TMPDIR)\qrc_icons.cpp --name icons
+
+# ----------------------------------------------------
+# Compile source files (release)
+# ----------------------------------------------------
+$(OBJDIR_RELEASE)\main.obj: $(SRCDIR)\main.cpp
+    @echo Compiling main.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\main.obj $(SRCDIR)\main.cpp
+
+$(OBJDIR_RELEASE)\baseform.obj: $(SRCDIR)\baseform.cpp
+    @echo Compiling baseform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\baseform.obj $(SRCDIR)\baseform.cpp
+
+$(OBJDIR_RELEASE)\clientform.obj: $(SRCDIR)\clientform.cpp
+    @echo Compiling clientform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\clientform.obj $(SRCDIR)\clientform.cpp
+
+$(OBJDIR_RELEASE)\clientskt.obj: $(SRCDIR)\clientskt.cpp
+    @echo Compiling clientskt.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\clientskt.obj $(SRCDIR)\clientskt.cpp
+
+$(OBJDIR_RELEASE)\serverform.obj: $(SRCDIR)\serverform.cpp
+    @echo Compiling serverform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\serverform.obj $(SRCDIR)\serverform.cpp
+
+$(OBJDIR_RELEASE)\serverskt.obj: $(SRCDIR)\serverskt.cpp
+    @echo Compiling serverskt.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\serverskt.obj $(SRCDIR)\serverskt.cpp
+
+$(OBJDIR_RELEASE)\transferform.obj: $(SRCDIR)\transferform.cpp
+    @echo Compiling transferform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\transferform.obj $(SRCDIR)\transferform.cpp
+
+$(OBJDIR_RELEASE)\transferskt.obj: $(SRCDIR)\transferskt.cpp
+    @echo Compiling transferskt.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\transferskt.obj $(SRCDIR)\transferskt.cpp
+
+$(OBJDIR_RELEASE)\helpform.obj: $(SRCDIR)\helpform.cpp
+    @echo Compiling helpform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\helpform.obj $(SRCDIR)\helpform.cpp
+
+$(OBJDIR_RELEASE)\notepadform.obj: $(SRCDIR)\notepadform.cpp
+    @echo Compiling notepadform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\notepadform.obj $(SRCDIR)\notepadform.cpp
+
+$(OBJDIR_RELEASE)\logger.obj: $(SRCDIR)\logger.cpp
+    @echo Compiling logger.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\logger.obj $(SRCDIR)\logger.cpp
+
+$(OBJDIR_RELEASE)\setting.obj: $(SRCDIR)\setting.cpp
+    @echo Compiling setting.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\setting.obj $(SRCDIR)\setting.cpp
+
+$(OBJDIR_RELEASE)\toolkit.obj: $(SRCDIR)\toolkit.cpp
+    @echo Compiling toolkit.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\toolkit.obj $(SRCDIR)\toolkit.cpp
+
+$(OBJDIR_RELEASE)\msgitem.obj: $(SRCDIR)\msgitem.cpp
+    @echo Compiling msgitem.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\msgitem.obj $(SRCDIR)\msgitem.cpp
+
+$(OBJDIR_RELEASE)\msglistmodel.obj: $(SRCDIR)\msglistmodel.cpp
+    @echo Compiling msglistmodel.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\msglistmodel.obj $(SRCDIR)\msglistmodel.cpp
+
+$(OBJDIR_RELEASE)\msglistpanel.obj: $(SRCDIR)\msglistpanel.cpp
+    @echo Compiling msglistpanel.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\msglistpanel.obj $(SRCDIR)\msglistpanel.cpp
+
+# MOC objects (release)
+$(OBJDIR_RELEASE)\moc_main.obj: $(MOCDIR_RELEASE)\moc_main.cpp
+    @echo Compiling moc_main.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_main.obj $(MOCDIR_RELEASE)\moc_main.cpp
+
+$(OBJDIR_RELEASE)\moc_baseform.obj: $(MOCDIR_RELEASE)\moc_baseform.cpp
+    @echo Compiling moc_baseform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_baseform.obj $(MOCDIR_RELEASE)\moc_baseform.cpp
+
+$(OBJDIR_RELEASE)\moc_clientform.obj: $(MOCDIR_RELEASE)\moc_clientform.cpp
+    @echo Compiling moc_clientform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_clientform.obj $(MOCDIR_RELEASE)\moc_clientform.cpp
+
+$(OBJDIR_RELEASE)\moc_clientskt.obj: $(MOCDIR_RELEASE)\moc_clientskt.cpp
+    @echo Compiling moc_clientskt.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_clientskt.obj $(MOCDIR_RELEASE)\moc_clientskt.cpp
+
+$(OBJDIR_RELEASE)\moc_serverform.obj: $(MOCDIR_RELEASE)\moc_serverform.cpp
+    @echo Compiling moc_serverform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_serverform.obj $(MOCDIR_RELEASE)\moc_serverform.cpp
+
+$(OBJDIR_RELEASE)\moc_serverskt.obj: $(MOCDIR_RELEASE)\moc_serverskt.cpp
+    @echo Compiling moc_serverskt.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_serverskt.obj $(MOCDIR_RELEASE)\moc_serverskt.cpp
+
+$(OBJDIR_RELEASE)\moc_transferform.obj: $(MOCDIR_RELEASE)\moc_transferform.cpp
+    @echo Compiling moc_transferform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_transferform.obj $(MOCDIR_RELEASE)\moc_transferform.cpp
+
+$(OBJDIR_RELEASE)\moc_transferskt.obj: $(MOCDIR_RELEASE)\moc_transferskt.cpp
+    @echo Compiling moc_transferskt.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_transferskt.obj $(MOCDIR_RELEASE)\moc_transferskt.cpp
+
+$(OBJDIR_RELEASE)\moc_helpform.obj: $(MOCDIR_RELEASE)\moc_helpform.cpp
+    @echo Compiling moc_helpform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_helpform.obj $(MOCDIR_RELEASE)\moc_helpform.cpp
+
+$(OBJDIR_RELEASE)\moc_notepadform.obj: $(MOCDIR_RELEASE)\moc_notepadform.cpp
+    @echo Compiling moc_notepadform.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_notepadform.obj $(MOCDIR_RELEASE)\moc_notepadform.cpp
+
+$(OBJDIR_RELEASE)\moc_logger.obj: $(MOCDIR_RELEASE)\moc_logger.cpp
+    @echo Compiling moc_logger.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_logger.obj $(MOCDIR_RELEASE)\moc_logger.cpp
+
+$(OBJDIR_RELEASE)\moc_msglistmodel.obj: $(MOCDIR_RELEASE)\moc_msglistmodel.cpp
+    @echo Compiling moc_msglistmodel.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_msglistmodel.obj $(MOCDIR_RELEASE)\moc_msglistmodel.cpp
+
+$(OBJDIR_RELEASE)\moc_msglistpanel.obj: $(MOCDIR_RELEASE)\moc_msglistpanel.cpp
+    @echo Compiling moc_msglistpanel.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\moc_msglistpanel.obj $(MOCDIR_RELEASE)\moc_msglistpanel.cpp
+
+$(OBJDIR_RELEASE)\qrc_icons.obj: $(TMPDIR)\qrc_icons.cpp
+    @echo Compiling qrc_icons.cpp...
+    $(CC) $(CFLAGS_RELEASE) /Fo$(OBJDIR_RELEASE)\qrc_icons.obj $(TMPDIR)\qrc_icons.cpp
+
+$(OBJDIR_RELEASE)\sokit.res: $(SRCDIR)\sokit.rc
+    @echo Compiling resource file...
+    $(RC) /fo$(OBJDIR_RELEASE)\sokit.res $(SRCDIR)\sokit.rc
+
+# ----------------------------------------------------
+# Link (release)
+# ----------------------------------------------------
+$(BINDIR)\$(TARGET): dirs ui_headers moc_release rcc \
+    $(OBJDIR_RELEASE)\main.obj \
+    $(OBJDIR_RELEASE)\baseform.obj \
+    $(OBJDIR_RELEASE)\clientform.obj \
+    $(OBJDIR_RELEASE)\clientskt.obj \
+    $(OBJDIR_RELEASE)\serverform.obj \
+    $(OBJDIR_RELEASE)\serverskt.obj \
+    $(OBJDIR_RELEASE)\transferform.obj \
+    $(OBJDIR_RELEASE)\transferskt.obj \
+    $(OBJDIR_RELEASE)\helpform.obj \
+    $(OBJDIR_RELEASE)\notepadform.obj \
+    $(OBJDIR_RELEASE)\logger.obj \
+    $(OBJDIR_RELEASE)\setting.obj \
+    $(OBJDIR_RELEASE)\toolkit.obj \
+    $(OBJDIR_RELEASE)\msgitem.obj \
+    $(OBJDIR_RELEASE)\msglistmodel.obj \
+    $(OBJDIR_RELEASE)\msglistpanel.obj \
+    $(OBJDIR_RELEASE)\moc_main.obj \
+    $(OBJDIR_RELEASE)\moc_baseform.obj \
+    $(OBJDIR_RELEASE)\moc_clientform.obj \
+    $(OBJDIR_RELEASE)\moc_clientskt.obj \
+    $(OBJDIR_RELEASE)\moc_serverform.obj \
+    $(OBJDIR_RELEASE)\moc_serverskt.obj \
+    $(OBJDIR_RELEASE)\moc_transferform.obj \
+    $(OBJDIR_RELEASE)\moc_transferskt.obj \
+    $(OBJDIR_RELEASE)\moc_helpform.obj \
+    $(OBJDIR_RELEASE)\moc_notepadform.obj \
+    $(OBJDIR_RELEASE)\moc_logger.obj \
+    $(OBJDIR_RELEASE)\moc_msglistmodel.obj \
+    $(OBJDIR_RELEASE)\moc_msglistpanel.obj \
+    $(OBJDIR_RELEASE)\qrc_icons.obj \
+    $(OBJDIR_RELEASE)\sokit.res
+    @echo Linking release version...
+    $(LINK) $(LFLAGS_RELEASE) /OUT:$(BINDIR)\$(TARGET) \
+        /LIBPATH:"$(QT_LIB)" \
+        /LIBPATH:"$(QT_PLUGINS)\platforms" \
+        $(OBJDIR_RELEASE)\main.obj \
+        $(OBJDIR_RELEASE)\baseform.obj \
+        $(OBJDIR_RELEASE)\clientform.obj \
+        $(OBJDIR_RELEASE)\clientskt.obj \
+        $(OBJDIR_RELEASE)\serverform.obj \
+        $(OBJDIR_RELEASE)\serverskt.obj \
+        $(OBJDIR_RELEASE)\transferform.obj \
+        $(OBJDIR_RELEASE)\transferskt.obj \
+        $(OBJDIR_RELEASE)\helpform.obj \
+        $(OBJDIR_RELEASE)\notepadform.obj \
+        $(OBJDIR_RELEASE)\logger.obj \
+        $(OBJDIR_RELEASE)\setting.obj \
+        $(OBJDIR_RELEASE)\toolkit.obj \
+        $(OBJDIR_RELEASE)\msgitem.obj \
+        $(OBJDIR_RELEASE)\msglistmodel.obj \
+        $(OBJDIR_RELEASE)\msglistpanel.obj \
+        $(OBJDIR_RELEASE)\moc_main.obj \
+        $(OBJDIR_RELEASE)\moc_baseform.obj \
+        $(OBJDIR_RELEASE)\moc_clientform.obj \
+        $(OBJDIR_RELEASE)\moc_clientskt.obj \
+        $(OBJDIR_RELEASE)\moc_serverform.obj \
+        $(OBJDIR_RELEASE)\moc_serverskt.obj \
+        $(OBJDIR_RELEASE)\moc_transferform.obj \
+        $(OBJDIR_RELEASE)\moc_transferskt.obj \
+        $(OBJDIR_RELEASE)\moc_helpform.obj \
+        $(OBJDIR_RELEASE)\moc_notepadform.obj \
+        $(OBJDIR_RELEASE)\moc_logger.obj \
+        $(OBJDIR_RELEASE)\moc_msglistmodel.obj \
+        $(OBJDIR_RELEASE)\moc_msglistpanel.obj \
+        $(OBJDIR_RELEASE)\qrc_icons.obj \
+        $(OBJDIR_RELEASE)\sokit.res \
+        $(QT_LIBS_RELEASE) \
+        $(QT_PLUGIN_LIBS_RELEASE) \
+        $(SYS_LIBS)
+    @echo Build completed: $(BINDIR)\$(TARGET)
+
+# ----------------------------------------------------
+# Compile source files (debug)
+# ----------------------------------------------------
+$(OBJDIR_DEBUG)\main.obj: $(SRCDIR)\main.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\main.obj $(SRCDIR)\main.cpp
+
+$(OBJDIR_DEBUG)\baseform.obj: $(SRCDIR)\baseform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\baseform.obj $(SRCDIR)\baseform.cpp
+
+$(OBJDIR_DEBUG)\clientform.obj: $(SRCDIR)\clientform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\clientform.obj $(SRCDIR)\clientform.cpp
+
+$(OBJDIR_DEBUG)\clientskt.obj: $(SRCDIR)\clientskt.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\clientskt.obj $(SRCDIR)\clientskt.cpp
+
+$(OBJDIR_DEBUG)\serverform.obj: $(SRCDIR)\serverform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\serverform.obj $(SRCDIR)\serverform.cpp
+
+$(OBJDIR_DEBUG)\serverskt.obj: $(SRCDIR)\serverskt.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\serverskt.obj $(SRCDIR)\serverskt.cpp
+
+$(OBJDIR_DEBUG)\transferform.obj: $(SRCDIR)\transferform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\transferform.obj $(SRCDIR)\transferform.cpp
+
+$(OBJDIR_DEBUG)\transferskt.obj: $(SRCDIR)\transferskt.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\transferskt.obj $(SRCDIR)\transferskt.cpp
+
+$(OBJDIR_DEBUG)\helpform.obj: $(SRCDIR)\helpform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\helpform.obj $(SRCDIR)\helpform.cpp
+
+$(OBJDIR_DEBUG)\notepadform.obj: $(SRCDIR)\notepadform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\notepadform.obj $(SRCDIR)\notepadform.cpp
+
+$(OBJDIR_DEBUG)\logger.obj: $(SRCDIR)\logger.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\logger.obj $(SRCDIR)\logger.cpp
+
+$(OBJDIR_DEBUG)\setting.obj: $(SRCDIR)\setting.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\setting.obj $(SRCDIR)\setting.cpp
+
+$(OBJDIR_DEBUG)\toolkit.obj: $(SRCDIR)\toolkit.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\toolkit.obj $(SRCDIR)\toolkit.cpp
+
+$(OBJDIR_DEBUG)\msgitem.obj: $(SRCDIR)\msgitem.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\msgitem.obj $(SRCDIR)\msgitem.cpp
+
+$(OBJDIR_DEBUG)\msglistmodel.obj: $(SRCDIR)\msglistmodel.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\msglistmodel.obj $(SRCDIR)\msglistmodel.cpp
+
+$(OBJDIR_DEBUG)\msglistpanel.obj: $(SRCDIR)\msglistpanel.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\msglistpanel.obj $(SRCDIR)\msglistpanel.cpp
+
+# MOC objects (debug)
+$(OBJDIR_DEBUG)\moc_main.obj: $(MOCDIR_DEBUG)\moc_main.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_main.obj $(MOCDIR_DEBUG)\moc_main.cpp
+
+$(OBJDIR_DEBUG)\moc_baseform.obj: $(MOCDIR_DEBUG)\moc_baseform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_baseform.obj $(MOCDIR_DEBUG)\moc_baseform.cpp
+
+$(OBJDIR_DEBUG)\moc_clientform.obj: $(MOCDIR_DEBUG)\moc_clientform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_clientform.obj $(MOCDIR_DEBUG)\moc_clientform.cpp
+
+$(OBJDIR_DEBUG)\moc_clientskt.obj: $(MOCDIR_DEBUG)\moc_clientskt.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_clientskt.obj $(MOCDIR_DEBUG)\moc_clientskt.cpp
+
+$(OBJDIR_DEBUG)\moc_serverform.obj: $(MOCDIR_DEBUG)\moc_serverform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_serverform.obj $(MOCDIR_DEBUG)\moc_serverform.cpp
+
+$(OBJDIR_DEBUG)\moc_serverskt.obj: $(MOCDIR_DEBUG)\moc_serverskt.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_serverskt.obj $(MOCDIR_DEBUG)\moc_serverskt.cpp
+
+$(OBJDIR_DEBUG)\moc_transferform.obj: $(MOCDIR_DEBUG)\moc_transferform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_transferform.obj $(MOCDIR_DEBUG)\moc_transferform.cpp
+
+$(OBJDIR_DEBUG)\moc_transferskt.obj: $(MOCDIR_DEBUG)\moc_transferskt.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_transferskt.obj $(MOCDIR_DEBUG)\moc_transferskt.cpp
+
+$(OBJDIR_DEBUG)\moc_helpform.obj: $(MOCDIR_DEBUG)\moc_helpform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_helpform.obj $(MOCDIR_DEBUG)\moc_helpform.cpp
+
+$(OBJDIR_DEBUG)\moc_notepadform.obj: $(MOCDIR_DEBUG)\moc_notepadform.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_notepadform.obj $(MOCDIR_DEBUG)\moc_notepadform.cpp
+
+$(OBJDIR_DEBUG)\moc_logger.obj: $(MOCDIR_DEBUG)\moc_logger.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_logger.obj $(MOCDIR_DEBUG)\moc_logger.cpp
+
+$(OBJDIR_DEBUG)\moc_msglistmodel.obj: $(MOCDIR_DEBUG)\moc_msglistmodel.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_msglistmodel.obj $(MOCDIR_DEBUG)\moc_msglistmodel.cpp
+
+$(OBJDIR_DEBUG)\moc_msglistpanel.obj: $(MOCDIR_DEBUG)\moc_msglistpanel.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\moc_msglistpanel.obj $(MOCDIR_DEBUG)\moc_msglistpanel.cpp
+
+$(OBJDIR_DEBUG)\qrc_icons.obj: $(TMPDIR)\qrc_icons.cpp
+    $(CC) $(CFLAGS_DEBUG) /Fo$(OBJDIR_DEBUG)\qrc_icons.obj $(TMPDIR)\qrc_icons.cpp
+
+$(OBJDIR_DEBUG)\sokit.res: $(SRCDIR)\sokit.rc
+    $(RC) /fo$(OBJDIR_DEBUG)\sokit.res $(SRCDIR)\sokit.rc
+
+# ----------------------------------------------------
+# Link (debug)
+# ----------------------------------------------------
+$(BINDIR)\debug\$(TARGET): dirs ui_headers moc_debug rcc \
+    $(OBJDIR_DEBUG)\main.obj \
+    $(OBJDIR_DEBUG)\baseform.obj \
+    $(OBJDIR_DEBUG)\clientform.obj \
+    $(OBJDIR_DEBUG)\clientskt.obj \
+    $(OBJDIR_DEBUG)\serverform.obj \
+    $(OBJDIR_DEBUG)\serverskt.obj \
+    $(OBJDIR_DEBUG)\transferform.obj \
+    $(OBJDIR_DEBUG)\transferskt.obj \
+    $(OBJDIR_DEBUG)\helpform.obj \
+    $(OBJDIR_DEBUG)\notepadform.obj \
+    $(OBJDIR_DEBUG)\logger.obj \
+    $(OBJDIR_DEBUG)\setting.obj \
+    $(OBJDIR_DEBUG)\toolkit.obj \
+    $(OBJDIR_DEBUG)\msgitem.obj \
+    $(OBJDIR_DEBUG)\msglistmodel.obj \
+    $(OBJDIR_DEBUG)\msglistpanel.obj \
+    $(OBJDIR_DEBUG)\moc_main.obj \
+    $(OBJDIR_DEBUG)\moc_baseform.obj \
+    $(OBJDIR_DEBUG)\moc_clientform.obj \
+    $(OBJDIR_DEBUG)\moc_clientskt.obj \
+    $(OBJDIR_DEBUG)\moc_serverform.obj \
+    $(OBJDIR_DEBUG)\moc_serverskt.obj \
+    $(OBJDIR_DEBUG)\moc_transferform.obj \
+    $(OBJDIR_DEBUG)\moc_transferskt.obj \
+    $(OBJDIR_DEBUG)\moc_helpform.obj \
+    $(OBJDIR_DEBUG)\moc_notepadform.obj \
+    $(OBJDIR_DEBUG)\moc_logger.obj \
+    $(OBJDIR_DEBUG)\moc_msglistmodel.obj \
+    $(OBJDIR_DEBUG)\moc_msglistpanel.obj \
+    $(OBJDIR_DEBUG)\qrc_icons.obj \
+    $(OBJDIR_DEBUG)\sokit.res
+    @echo Linking debug version...
+    $(LINK) $(LFLAGS_DEBUG) /OUT:$(BINDIR)\debug\$(TARGET) /PDB:$(BINDIR)\debug\sokit.pdb \
+        /LIBPATH:"$(QT_LIB)" \
+        /LIBPATH:"$(QT_PLUGINS)\platforms" \
+        $(OBJDIR_DEBUG)\main.obj \
+        $(OBJDIR_DEBUG)\baseform.obj \
+        $(OBJDIR_DEBUG)\clientform.obj \
+        $(OBJDIR_DEBUG)\clientskt.obj \
+        $(OBJDIR_DEBUG)\serverform.obj \
+        $(OBJDIR_DEBUG)\serverskt.obj \
+        $(OBJDIR_DEBUG)\transferform.obj \
+        $(OBJDIR_DEBUG)\transferskt.obj \
+        $(OBJDIR_DEBUG)\helpform.obj \
+        $(OBJDIR_DEBUG)\notepadform.obj \
+        $(OBJDIR_DEBUG)\logger.obj \
+        $(OBJDIR_DEBUG)\setting.obj \
+        $(OBJDIR_DEBUG)\toolkit.obj \
+        $(OBJDIR_DEBUG)\msgitem.obj \
+        $(OBJDIR_DEBUG)\msglistmodel.obj \
+        $(OBJDIR_DEBUG)\msglistpanel.obj \
+        $(OBJDIR_DEBUG)\moc_main.obj \
+        $(OBJDIR_DEBUG)\moc_baseform.obj \
+        $(OBJDIR_DEBUG)\moc_clientform.obj \
+        $(OBJDIR_DEBUG)\moc_clientskt.obj \
+        $(OBJDIR_DEBUG)\moc_serverform.obj \
+        $(OBJDIR_DEBUG)\moc_serverskt.obj \
+        $(OBJDIR_DEBUG)\moc_transferform.obj \
+        $(OBJDIR_DEBUG)\moc_transferskt.obj \
+        $(OBJDIR_DEBUG)\moc_helpform.obj \
+        $(OBJDIR_DEBUG)\moc_notepadform.obj \
+        $(OBJDIR_DEBUG)\moc_logger.obj \
+        $(OBJDIR_DEBUG)\moc_msglistmodel.obj \
+        $(OBJDIR_DEBUG)\moc_msglistpanel.obj \
+        $(OBJDIR_DEBUG)\qrc_icons.obj \
+        $(OBJDIR_DEBUG)\sokit.res \
+        $(QT_LIBS_DEBUG) \
+        $(QT_PLUGIN_LIBS_DEBUG) \
+        $(SYS_LIBS)
+    @echo Build completed: $(BINDIR)\debug\$(TARGET)
+
+# ----------------------------------------------------
+# Clean
+# ----------------------------------------------------
+clean:
+    @echo Cleaning...
+    @if exist "$(OBJDIR_RELEASE)" rmdir /s /q "$(OBJDIR_RELEASE)"
+    @if exist "$(OBJDIR_DEBUG)" rmdir /s /q "$(OBJDIR_DEBUG)"
+    @if exist "$(TMPDIR)\ui_*.h" del /q "$(TMPDIR)\ui_*.h" 2>nul
+    @if exist "$(TMPDIR)\qrc_*.cpp" del /q "$(TMPDIR)\qrc_*.cpp" 2>nul
+    @if exist "$(BINDIR)\$(TARGET)" del /q "$(BINDIR)\$(TARGET)" 2>nul
+    @if exist "$(BINDIR)\debug\$(TARGET)" del /q "$(BINDIR)\debug\$(TARGET)" 2>nul
+    @if exist "$(BINDIR)\debug\*.pdb" del /q "$(BINDIR)\debug\*.pdb" 2>nul
+    @echo Clean completed.
+
+# ----------------------------------------------------
+# Translation update
+# ----------------------------------------------------
+translation:
+    $(LUPDATE) $(SRCDIR) -ts $(SRCDIR)\sokit.ts
+    $(LRELEASE) $(SRCDIR)\sokit.ts -qm $(BINDIR)\sokit.qm
+
+# ----------------------------------------------------
+# Show help
+# ----------------------------------------------------
+help:
+    @echo sokit Makefile for nmake (MSVC + Qt5)
+    @echo.
+    @echo Usage:
+    @echo   nmake          - Build release version
+    @echo   nmake debug    - Build debug version
+    @echo   nmake all      - Build both debug and release
+    @echo   nmake clean    - Clean all generated files
+    @echo   nmake translation - Update translation files
+    @echo.
+    @echo Configuration:
+    @echo   QTDIR = $(QTDIR)
+    @echo   If Qt is installed elsewhere, modify QTDIR at the top of Makefile.
+
+.PHONY: all release debug clean dirs ui_headers moc_release moc_debug rcc translation help
